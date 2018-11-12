@@ -7,6 +7,17 @@ module.exports = {
     },
     view: function() {
         let post = Post.current
-        return m('div', `${post.content}`)
+        return m('div.container', 
+                m('div.row', 
+                    m('div.col.s12',
+                        m('h1.center-align', 'Full Post')
+                    )
+                ),
+                m('div.row', 
+                    m('div.col.s12',
+                        m('p.center-align',`${post.content}`)
+            )
+        )
+        )
     }
 }

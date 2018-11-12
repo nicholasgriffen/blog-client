@@ -15,7 +15,9 @@ module.exports = {
 		m.redraw()
 	},
 	view: function () {
-		return m('form', {
+		return m('div.container', 
+		m('div.row', 
+			m('form.col.s12', {
 			onsubmit: function(e) {
                 e.preventDefault()
                 console.log(`${Post.current.content}`)                
@@ -27,14 +29,18 @@ module.exports = {
 					.then(record => m.route.set('/show/' + record.id))
 			}
 		}, [
-			m('label', 'Content'),
-			m('input[type=text][placeholder="Content"][required]', {
-				oninput: m.withAttr('value', function(value) {
-					Post.current.content = value
+			m('div.row',
+			m('div.input-field.col.s12',
+				m('input[type=text][required]', {
+					oninput: m.withAttr('value', function(value) {
+						Post.current.content = value
+					}),
+					value: Post.current.content
 				}),
-				value: Post.current.content
-			}),
-			m('button[type=submit]', 'Save')
-		])
+				m('label.active', 'Content')
+			),
+			m('button[type=submit].col.s12', 'Save')
+		)])
+		))
 	}
 } 
