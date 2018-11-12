@@ -1,21 +1,31 @@
 let m = require('mithril')
 let Post = require('../models/Post')
+let heading
 
 module.exports = {
 	oninit: function (vnode) {
 		if (vnode.attrs.id) {
+			heading = 'Edit Post'
 			return Post.load(vnode.attrs.id)
 		}
+		heading = 'New Post'
 		Post.current = Post.default
 	},
 	onupdate: function () {
 		if (m.route.get().match(/create/)) {
+			heading = 'New Post'
 			Post.current = Post.default
 		}
+		heading = 'Edit Post'
 		m.redraw()
 	},
 	view: function () {
 		return m('div.container', 
+		m('div.row',
+			m('div.col.s12',
+			m('h1.center-align', `${heading}`)
+			)
+		),
 		m('div.row', 
 			m('form.col.s12', {
 			onsubmit: function(e) {

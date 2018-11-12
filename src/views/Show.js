@@ -16,8 +16,16 @@ module.exports = {
                 m('div.row', 
                     m('div.col.s12',
                         m('p.center-align',`${post.content}`)
-            )
-        )
+                    ),
+                    m('div.col.s6',
+                    m('p.center-align', 
+                        m(`a.[href=/edit/${post.id}]`, {oncreate: m.route.link}, 'Edit'),
+                    )),
+                    m('div.col.s6',
+                    m('p.center-align',
+                        m(`a.[href=/delete/${post.id}]`, {oncreate: m.route.link}, 'Delete')
+                    )),
+                )
         )
     }
 }
