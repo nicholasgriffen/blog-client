@@ -7,14 +7,24 @@ module.exports = {
         return m('table',
                 m('thead',
                 m('tr',
-                m('th', 'Posts'))),
+                m('th', 'Preview'),
+                m('th', 'Show Post'),
+                m('th', 'Edit Post'),
+                m('th', 'Delete Post'))),
                 Post.list.map(post => {
                     return m('tr',
-                    m(`td.[id=${post.id}]`, `${post.content}`))
+                    // Preview
+                    m(`td.[id=${post.id}]`, `${post.content.slice(0, 15)}...`),
+                    // Show
+                    m('td', m(`a.[href=/show/${post.id}]`, {oncreate: m.route.link}, 'Show')),
+                    // Edit
+                    m('td', m(`a.[href=/edit/${post.id}]`, {oncreate: m.route.link}, 'Edit')),
+                    // Delete
+                    m('td', m(`a.[href=/delete/${post.id}]`, {oncreate: m.route.link}, 'Delete'))
+                    )
                 })
             )
     }
-    // clickable list of posts
-    // click links to single post view 
+    // edit, show, delete links 
 
 }
