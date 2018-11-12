@@ -15,8 +15,9 @@ module.exports = {
 		if (m.route.get().match(/create/)) {
 			heading = 'New Post'
 			Post.current = Post.default
+		} else {
+			heading = 'Edit Post'
 		}
-		heading = 'Edit Post'
 		m.redraw()
 	},
 	view: function () {
