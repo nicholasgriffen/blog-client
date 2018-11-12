@@ -6,23 +6,24 @@ module.exports = {
 		if (vnode.attrs.id) {
 			return Post.load(vnode.attrs.id)
 		}
-		Post.current = {content: 'This is placeholder text'}
+		Post.current = Post.default
 	},
 	onupdate: function () {
 		if (m.route.get().match(/create/)) {
-			Post.current = {content: 'This is placeholder text'}
+			Post.current = Post.default
 		}
 		m.redraw()
 	},
 	view: function () {
 		return m('form', {
 			onsubmit: function(e) {
-				e.preventDefault()
+                e.preventDefault()
+                console.log(`${Post.current.content}`)                
 				if (m.route.get().match(/edit/)) {
 					return Post.edit(Post.current)
 						.then(record => m.route.set('/show/' + record.id))
 				}
-				return Post.create(Post.current)
+                return Post.create(Post.current)
 					.then(record => m.route.set('/show/' + record.id))
 			}
 		}, [

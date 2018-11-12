@@ -4,6 +4,7 @@ let url = 'https://fathomless-ridge-95443.herokuapp.com/posts'
 let Post = {
     list: [],
     current: {},
+    default: {content: "this is the default post"},
     
     loadList: function() {
         return m.request({
@@ -12,7 +13,6 @@ let Post = {
     })
     .then(result => {
         Post.list = result
-        console.log(Post.list)
     })
     },
     
@@ -25,7 +25,7 @@ let Post = {
         if (result.id) {
             Post.current = result
         } else {
-            Post.current = {id: 1, content: "Couldn't find a post with requested ID"}
+            Post.current = Post.default
         }
     })
     },
@@ -34,7 +34,7 @@ let Post = {
 		return m.request({
 			method: 'PUT',
 			url: `${url}/${body.id}`,
-			data: body,
+			data: {content: body.content},
 		})
     },
     

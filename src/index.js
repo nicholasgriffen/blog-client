@@ -1,8 +1,10 @@
 let m = require('mithril')
 
-// let Post = require('./models/Post')
+let Post = require('./models/Post')
 // let Header = require('./views/Header')
 let Home = require('./views/Home')
+let Form = require('./views/Form')
+let Show = require('./views/Show')
 
 m.route(document.body, '/', {
     '/': {
@@ -17,7 +19,7 @@ m.route(document.body, '/', {
     },
     '/show/:id': {
         render: function(vnode) {
-            return m(Form, vnode.attrs)
+            return m(Show, vnode.attrs)
         }
     },
     '/edit/:id': {
