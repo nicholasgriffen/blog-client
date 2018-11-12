@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-build": "webpack src/index.js --output bin/app.js -d --watch",
     "build": "webpack src/index.js --output bin/app.js -p",
     "start": "lite-server"
   },

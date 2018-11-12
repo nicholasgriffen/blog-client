@@ -1,5 +1,5 @@
 let m = require('mithril')
-let url = 'https://fathomless-ridge-95443.herokuapp.com'
+let url = 'https://fathomless-ridge-95443.herokuapp.com/posts'
 
 let Post = {
     list: [],
@@ -8,5 +8,11 @@ let Post = {
         method: 'GET',
         url,
     })
-    .then(result => Post.list = result),
+    .then(result => {
+        Post.list = result
+        Post.current = result[0]
+        console.log(Post.list)
+    }),
 }
+
+module.exports = Post
